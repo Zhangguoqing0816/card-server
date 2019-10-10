@@ -25,6 +25,7 @@ import java.util.Objects;
  */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+    //WebMvcConfigurer是一个拦截器
 
     @Autowired
     private RequestMappingHandlerAdapter handlerAdapter;
@@ -48,6 +49,10 @@ public class WebConfig implements WebMvcConfigurer {
         return new CurrentUserInfoMethodArgumentResolver();
     }
 
+    /**
+     * 时间处理
+     * Date 类型对象绑定
+     */
     @PostConstruct
     public void addConversionConfig() {
         ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();

@@ -23,13 +23,11 @@ public class LoginService {
 
     /**
      * 获取验证码
-     *
      * @param request
      * @param response
      * @throws Exception
      */
-    public void patchca(HttpServletRequest request,
-                        HttpServletResponse response) throws Exception {
+    public void patchca(HttpServletRequest request, HttpServletResponse response) throws Exception {
         session = request.getSession();
         ConfigurableCaptchaService cs = new ConfigurableCaptchaService();
         cs.setColorFactory(new SingleColorFactory(new Color(25, 60, 170)));
@@ -58,4 +56,6 @@ public class LoginService {
         session.setAttribute("validateCode", validateCode);
         stream.flush();
     }
+
+
 }
