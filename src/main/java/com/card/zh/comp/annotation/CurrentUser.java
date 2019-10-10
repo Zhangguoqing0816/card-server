@@ -1,4 +1,4 @@
-package com.card.zh.annotation;
+package com.card.zh.comp.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

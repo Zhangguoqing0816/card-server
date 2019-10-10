@@ -1,6 +1,6 @@
-package com.card.zh.config;
+package com.card.zh.comp.config;
 
-import com.card.zh.listen.CurrentUserInfoMethodArgumentResolver;
+import com.card.zh.comp.listen.CurrentUserInfoMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

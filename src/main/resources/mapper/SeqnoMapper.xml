@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.card.zh.mapper.SeqnoMapper">
+
+  <select id="querySeqNo" resultType="com.card.zh.entity.Seqno">
+        SELECT * FROM seqno WHERE SEQTYPE = #{seqType} AND GENDATE = #{genDate}
+    </select>
+
+  <insert id="insertSeqNo" parameterType="com.card.zh.entity.Seqno">
+        INSERT INTO seqno VALUES (#{seqType},#{genDate},#{curValue})
+    </insert>
+
+  <update id="updateSeqNo" parameterType="com.card.zh.entity.Seqno">
+        UPDATE seqno SET CURVALUE = #{curValue} WHERE SEQTYPE = #{seqType} AND GENDATE = #{genDate}
+    </update>
+
+
+</mapper>
