@@ -26,7 +26,6 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                //扫描包
                 .apis(RequestHandlerSelectors.basePackage("com.card.zh.controller"))
                 .paths(PathSelectors.any())
                 .build();
@@ -39,7 +38,7 @@ public class Swagger2 {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 //页面标题
-                .title(" 测试使用 Swagger2 构建RESTful API")
+                .title(" 测试使用 Swagger2 构建RestFull API")
                 //创建人
                 .contact(new Contact("作者：张国庆", null, null))
                 //版本号

@@ -8,6 +8,8 @@ import com.card.zh.service.ITempService;
 import com.card.zh.util.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,9 @@ public class TempController {
     @Autowired
     private ITempService iTempService;
 
+    private static final Logger Log = LoggerFactory.getLogger(TempController.class);
+
+
     @ApiOperation(value = "getAll", notes = "all")
     @GetMapping("getAllTemp")
     public String getAllTemp(){
@@ -34,6 +39,7 @@ public class TempController {
         List<Temp> temps = iTempService.selectList(wrapper);
         Result<List<Temp>> listResult = new Result<>("1", temps);
         String string = (String) JSON.toJSON(listResult);
+        Log.info(string);
         return string;
 //        return temps.toString();
     }
