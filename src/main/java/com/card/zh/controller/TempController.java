@@ -1,11 +1,10 @@
 package com.card.zh.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.card.zh.entity.Temp;
 import com.card.zh.service.ITempService;
-import com.card.zh.util.Result;
+import com.card.zh.util.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -34,13 +33,37 @@ public class TempController {
 
     @ApiOperation(value = "getAll", notes = "all")
     @GetMapping("getAllTemp")
-    public String getAllTemp(){
+    public String getAllTemp1() {
         Wrapper<Temp> wrapper = new EntityWrapper<>();
         List<Temp> temps = iTempService.selectList(wrapper);
-        Result<List<Temp>> listResult = new Result<>("1", temps);
-        String string = (String) JSON.toJSON(listResult);
-        Log.info(string);
-        return string;
-//        return temps.toString();
+        return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", temps);
+    }
+
+    @ApiOperation(value = "根据条件获取", notes = "根据条件获取")
+    @GetMapping("getTempBy")
+    public String getTempBy() {
+        Wrapper<Temp> wrapper = new EntityWrapper<>();
+        wrapper.eq("zhang_gq", "5");
+        List<Temp> temps = iTempService.selectList(wrapper);
+        return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", temps);
+    }
+
+    @ApiOperation(value = "getErr", notes = "错误返回演示")
+    @GetMapping("getErr")
+    public String getErr() {
+        try {
+            int x = 1 / 0;
+            return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultData<List<Temp>>().assembleJsonInfo("0", "失败", null);
+        }
+    }
+
+    @ApiOperation(value = "getToXml", notes = "getToXml")
+    @GetMapping("getToXml")
+    public String getToXml() {
+        Temp temp = iTempService.queryBy("6");
+        return new ResultData<Temp>().assembleJsonInfo("1", "成功", temp);
     }
 }

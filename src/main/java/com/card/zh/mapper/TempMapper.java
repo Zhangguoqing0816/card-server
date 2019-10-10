@@ -4,9 +4,16 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.card.zh.entity.Temp;
 import org.springframework.stereotype.Repository;
 
+/**
+ * <p>
+ * Mapper 接口
+ * </p>
+ *
+ * @author zhanggq
+ * @since 2019-10-10
+ */
 @Repository
 public interface TempMapper extends BaseMapper<Temp> {
-    Integer insert(Temp record);
 
-    int insertSelective(Temp record);
+    Temp queryBy(String aa);
 }

@@ -10,4 +10,5 @@ import com.card.zh.entity.Temp;
  */
 public interface ITempService extends IService<Temp> {
 
+    Temp queryBy(String aa);
 }

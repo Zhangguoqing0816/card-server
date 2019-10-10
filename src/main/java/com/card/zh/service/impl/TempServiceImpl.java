@@ -1,15 +1,11 @@
 package com.card.zh.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.card.zh.entity.Temp;
 import com.card.zh.mapper.TempMapper;
 import com.card.zh.service.ITempService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 
 /**
@@ -22,4 +18,9 @@ public class TempServiceImpl  extends ServiceImpl<TempMapper, Temp> implements I
 
     @Autowired
     private TempMapper tempMapper;
+
+    @Override
+    public Temp queryBy(String aa) {
+        return tempMapper.queryBy(aa);
+    }
 }
