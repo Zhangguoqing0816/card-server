@@ -2,17 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.card.zh.mapper.SeqnoMapper">
 
-  <select id="querySeqNo" resultType="com.card.zh.entity.Seqno">
-        SELECT * FROM seqno WHERE SEQTYPE = #{seqType} AND GENDATE = #{genDate}
-    </select>
 
-  <insert id="insertSeqNo" parameterType="com.card.zh.entity.Seqno">
-        INSERT INTO seqno VALUES (#{seqType},#{genDate},#{curValue})
-    </insert>
-
-  <update id="updateSeqNo" parameterType="com.card.zh.entity.Seqno">
-        UPDATE seqno SET CURVALUE = #{curValue} WHERE SEQTYPE = #{seqType} AND GENDATE = #{genDate}
+    <update id="updateSno" parameterType="com.card.zh.entity.Sequence">
+        update sno_generater set currval=#{currval,jdbcType=DECIMAL}, nextval = #{nextval,jdbcType=DECIMAL} where id_name = #{idName,jdbcType=VARCHAR}
     </update>
 
+    <select id="selectSno" resultType="com.card.zh.entity.Sequence" parameterType="java.lang.String">
+        select id_name, currval, nextval from sno_generater where id_name = #{idName,jdbcType=VARCHAR}
+    </select>
 
+    <insert id="insertSno" parameterType="com.card.zh.entity.Sequence">
+        INSERT INTO sno_generater (`id_name`, `currval`, `nextval`) VALUES (#{idName,jdbcType=VARCHAR},  #{currval,jdbcType=DECIMAL},  #{nextval,jdbcType=DECIMAL} );
+    </insert>
 </mapper>
