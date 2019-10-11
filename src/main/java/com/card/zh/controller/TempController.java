@@ -36,7 +36,7 @@ public class TempController {
     public String getAllTemp1() {
         Wrapper<Temp> wrapper = new EntityWrapper<>();
         List<Temp> temps = iTempService.selectList(wrapper);
-        return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", temps);
+        return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", temps);
     }
 
     @ApiOperation(value = "根据条件获取", notes = "根据条件获取")
@@ -45,7 +45,7 @@ public class TempController {
         Wrapper<Temp> wrapper = new EntityWrapper<>();
         wrapper.eq("zhang_gq", "5");
         List<Temp> temps = iTempService.selectList(wrapper);
-        return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", temps);
+        return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", temps);
     }
 
     @ApiOperation(value = "getErr", notes = "错误返回演示")
@@ -53,10 +53,10 @@ public class TempController {
     public String getErr() {
         try {
             int x = 1 / 0;
-            return new ResultData<List<Temp>>().assembleJsonInfo("1", "成功", null);
+            return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", null);
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultData<List<Temp>>().assembleJsonInfo("0", "失败", null);
+            return new ResultData<List<Temp>>().assembleJsonInfo(0, "失败", null);
         }
     }
 
@@ -64,6 +64,6 @@ public class TempController {
     @GetMapping("getToXml")
     public String getToXml() {
         Temp temp = iTempService.queryBy("6");
-        return new ResultData<Temp>().assembleJsonInfo("1", "成功", temp);
+        return new ResultData<Temp>().assembleJsonInfo(1, "成功", temp);
     }
 }
