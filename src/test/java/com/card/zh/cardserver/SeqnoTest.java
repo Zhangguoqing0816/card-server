@@ -1,8 +1,7 @@
 package com.card.zh.cardserver;
 
 import com.card.zh.comp.config.SpringContextUtils;
-import com.card.zh.mapper.SeqnoMapper;
-import com.card.zh.service.SeqnoService;
+import com.card.zh.mapper.SequenceMapper;
 import com.card.zh.service.SequenceService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,10 +24,10 @@ public class SeqnoTest {
 
     @Test
     public void test() {
-        SeqnoMapper m2=SpringContextUtils.getBean(SeqnoMapper.class);
-//        SeqnoMapper m3= SpringContextUtils.getBean("com.card.zh.mapper.SeqnoMapper",SeqnoMapper.class);
-        SeqnoMapper m1= SpringContextUtils.getBean("SeqnoMapper",SeqnoMapper.class);
-        System.out.println(m1=m2);
+        Long sqno1 = sequenceService.getNumSeqno("CD", 0);
+        String sqno2 = sequenceService.getStrSeqno("CD", 0);
+        System.out.println(sqno1);
+        System.out.println(sqno2);
     }
 
 

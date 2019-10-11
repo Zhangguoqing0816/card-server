@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 @Mapper
-public interface SeqnoMapper {
+public interface SequenceMapper {
 
     /**
      * 查询序列

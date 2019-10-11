@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.card.zh.mapper.SequenceMapper">
+
+
+    <update id="updateSno" parameterType="com.card.zh.entity.Sequence">
+        update sequence set currval=#{currval,jdbcType=DECIMAL}, nextval = #{nextval,jdbcType=DECIMAL} where id_name = #{idName,jdbcType=VARCHAR}
+    </update>
+
+    <select id="selectSno" resultType="com.card.zh.entity.Sequence" parameterType="java.lang.String">
+        select id_name, currval, nextval from sequence where id_name = #{idName,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insertSno" parameterType="com.card.zh.entity.Sequence">
+        INSERT INTO sequence (`id_name`, `currval`, `nextval`) VALUES (#{idName,jdbcType=VARCHAR},  #{currval,jdbcType=DECIMAL},  #{nextval,jdbcType=DECIMAL} );
+    </insert>
+</mapper>

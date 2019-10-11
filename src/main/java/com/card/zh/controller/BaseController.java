@@ -1,6 +1,6 @@
 package com.card.zh.controller;
 
-import com.card.zh.service.SeqnoService;
+import com.card.zh.service.SequenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -10,16 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class BaseController {
     @Autowired
-    SeqnoService seqnoService;
+    SequenceService sequenceService;
 
     /**
      * 生成主键
-     *
      * @param seqType 主键类型
      * @param numSize 尾部数字长度
      * @return
      */
     public String genSeqNo(String seqType, int numSize) {
-        return seqnoService.getDateSeqNo(seqType).getFormatValue(numSize);
+        return sequenceService.getStrSeqno(seqType,null);
     }
 }
