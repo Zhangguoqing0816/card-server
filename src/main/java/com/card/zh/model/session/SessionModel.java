@@ -1,5 +1,7 @@
 package com.card.zh.model.session;
 
+import lombok.Data;
+
 import java.io.Serializable;
 
 /**
@@ -7,18 +9,33 @@ import java.io.Serializable;
  * @Description:
  * @Date: 2019/10/9 15:29
  */
+@Data
 public class SessionModel implements Serializable {
 
-    private Long id;//账号id
+    private String userName;
 
-    private Long userId;//用户id
+    private String nickName;
 
-    private String userName;//用户名称
+    private String sex;
 
-    private String userCode;//登录用户
+    private String phone;
 
-//    private Set<RoleInfoResponse> roleInfoSet;//角色信息
+    private String account;
 
-//    private List<Resource> resources;//菜单
+    private String password;
+
+    private String accountStatus;
+
+    private String email;
+
+    private String headSculpture;
+
+    private String qqNumber;
+
+    private String wechatNumber;
+
+    private byte[] qqQrCode;
+
+    private byte[] wechatQrCode;
 
 }

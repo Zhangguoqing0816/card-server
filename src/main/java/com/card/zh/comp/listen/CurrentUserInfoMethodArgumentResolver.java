@@ -2,8 +2,10 @@ package com.card.zh.comp.listen;
 
 import com.card.zh.comp.annotation.CurrentUser;
 import com.card.zh.model.session.SessionModel;
+import com.card.zh.service.LoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -20,8 +22,8 @@ public class CurrentUserInfoMethodArgumentResolver implements HandlerMethodArgum
 
     private final static Logger log = LoggerFactory.getLogger(CurrentUserInfoMethodArgumentResolver.class);
 
-//    @Autowired
-//    private LoginService loginService;
+    @Autowired
+    private LoginService loginService;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -32,9 +34,8 @@ public class CurrentUserInfoMethodArgumentResolver implements HandlerMethodArgum
     @Nullable
     @Override
     public Object resolveArgument(MethodParameter methodParameter, @Nullable ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, @Nullable WebDataBinderFactory webDataBinderFactory) throws Exception {
-        String accessToken = nativeWebRequest.getHeader("Authorization");
-        SessionModel userModel = new SessionModel();
-        // to do
-        return userModel;
+        String account = nativeWebRequest.getHeader("Authorization");
+        SessionModel sessionModel = loginService.getSessionModel(account);
+        return sessionModel;
     }
 }
