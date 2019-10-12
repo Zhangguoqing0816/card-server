@@ -109,4 +109,27 @@ public class LoginService {
         BeanUtils.copyProperties(userInfo, sessionModel);
         return sessionModel;
     }
+
+    /**
+     * 修改密码
+     *
+     * @param request
+     * @return
+     */
+    public String updatePassword(LoginRequest request) {
+        String result = "ok";
+        Map<String, Object> map = new HashMap<>();
+        map.put("account", request.getAccount());
+        List<UserInfo> userInfos = userInfoService.selectByMap(map);
+        if (userInfos.isEmpty()) {
+            result = "没有查询到此人";
+        } else if (!userInfos.get(0).getPassword().equals(request.getPassword())) {
+            result = "原密码错误";
+        } else {
+            UserInfo userInfo = userInfos.get(0);
+            userInfo.setPassword(request.getNewPassword());
+            userInfoService.insert(userInfo);
+        }
+        return result;
+    }
 }

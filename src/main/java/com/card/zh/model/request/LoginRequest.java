@@ -16,4 +16,7 @@ public class LoginRequest {
     private String password;
     @ApiModelProperty("验证码")
     private String authCode;
+    @ApiModelProperty("新密码-修改密码使用")
+    private String newPassword;
+
 }

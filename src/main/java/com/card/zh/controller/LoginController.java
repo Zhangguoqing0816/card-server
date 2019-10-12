@@ -1,6 +1,5 @@
 package com.card.zh.controller;
 
-import com.card.zh.comp.annotation.CurrentUser;
 import com.card.zh.model.request.LoginRequest;
 import com.card.zh.model.session.SessionModel;
 import com.card.zh.service.LoginService;
@@ -9,7 +8,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,8 +45,12 @@ public class LoginController {
 
     @PostMapping("/updatePassword")
     @ApiOperation(value = "修改密码", notes = "修改密码")
-    public String update(@RequestBody LoginRequest loginRequest, @ApiIgnore @CurrentUser SessionModel sessionModel) {
-        String account = sessionModel.getAccount();
-        return new ResultData<SessionModel>().assembleJsonInfo(0, "登陆成功", sessionModel);
+    public String update(@RequestBody LoginRequest loginRequest) {
+        String result = loginService.updatePassword(loginRequest);
+        if (result.contains("ok")) {
+            return new ResultData<String>().assembleJsonInfo(0, "登陆成功", null);
+        } else {
+            return new ResultData<SessionModel>().assembleJsonInfo(1, result, null);
+        }
     }
 }
