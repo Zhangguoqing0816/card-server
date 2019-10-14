@@ -46,7 +46,7 @@ public class Filter extends OncePerRequestFilter {
             return;
         }
 
-        log.info("account save ok");
+        log.info("account save ok -->" + account);
         filterChain.doFilter(request, response);
     }
 }

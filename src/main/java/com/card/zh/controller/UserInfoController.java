@@ -10,9 +10,7 @@ import com.card.zh.util.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +32,7 @@ public class UserInfoController extends BaseController {
 
     @ApiOperation(value = "addUser", notes = "addUser")
     @PostMapping("/addUser")
-    public String add(UserInfoRequest request) {
+    public ResultData add(@RequestBody UserInfoRequest request) {
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(request, userInfo);
         userInfo.setId(genSeqNo("U", 5));
@@ -47,14 +45,14 @@ public class UserInfoController extends BaseController {
             });
         }
         userInfoService.addUser(userInfo, userInfoContentList);
-        return new ResultData<String>().assembleJsonInfo(0, "插入成功", null);
+        return ResultData.success("插入成功");
     }
 
     @ApiOperation(value = "getUsers", notes = "getUsers")
-    @PostMapping("/getUsers")
-    public String getUser() {
+    @GetMapping("/getUsers")
+    public ResultData getUser() {
         List<UserInfo> users = userInfoService.getUsers();
-        return new ResultData<List<UserInfo>>().assembleJsonInfo(0, "search成功", users);
+        return ResultData.success("search成功", users);
     }
 
 }

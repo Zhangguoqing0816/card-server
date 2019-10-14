@@ -1,6 +1,7 @@
 package com.card.zh.util;
 
-import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -9,21 +10,92 @@ import java.io.Serializable;
  * @Description:
  * @Date: 2019/10/9 17:06
  */
-public class ResultData<T> implements Serializable {
+@Data
+public class ResultData implements Serializable {
+
+    @ApiModelProperty("操作成功失败表示，0=成功，1=失败")
+    private int resultCode;
+    @ApiModelProperty("返回提示信息")
+    private String message;
+    @ApiModelProperty("返回对象数据")
+    private Object data;
 
     /**
-     * 返回Json格式的字符串
-     * @param resultCode 返回状态吗 0：成功 1：失败
-     * @param message    返回成功或失败的信息
-     * @param data       返回数据
+     *  成功 resultCode =0； 失败 resultCode = 1
      * @return
      */
-    public String assembleJsonInfo(int resultCode, String message, T data) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("code", resultCode);
-        jsonObject.put("message", message);
-        jsonObject.put("data", data);
-        String jsonString = jsonObject.toJSONString();
-        return jsonString;
+    public static ResultData success() {
+        ResultData result = new ResultData();
+        result.setResultCode(0);
+        result.setMessage("操作成功");
+        result.setData(null);
+        return result;
     }
+
+    /**
+     *  成功 resultCode =0； 失败 resultCode = 1
+     * @return
+     */
+    public static ResultData success(String message) {
+        ResultData result = new ResultData();
+        result.setResultCode(0);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
+    }
+
+    /**
+     * 成功 resultCode =0； 失败 resultCode = 1
+     *
+     * @return
+     */
+    public static ResultData success(Object data) {
+        ResultData result = new ResultData();
+        result.setResultCode(0);
+        result.setMessage("操作成功");
+        result.setData(data);
+        return result;
+    }
+
+    /**
+     * 成功 resultCode =0； 失败 resultCode = 1
+     *
+     * @return
+     */
+    public static ResultData success(String message, Object data) {
+        ResultData result = new ResultData();
+        result.setResultCode(0);
+        result.setMessage(message);
+        result.setData(data);
+        return result;
+    }
+
+    /**
+     * 成功 resultCode =0； 失败 resultCode = 1
+     *
+     * @return
+     */
+    public static ResultData error() {
+        ResultData result = new ResultData();
+        result.setResultCode(1);
+        result.setMessage("操作失败");
+        result.setData(null);
+        return result;
+    }
+
+    /**
+     * 成功 resultCode =0； 失败 resultCode = 1
+     *
+     * @return
+     */
+    public static ResultData error(String message) {
+        ResultData result = new ResultData();
+        result.setResultCode(1);
+        result.setMessage(message);
+        result.setData(null);
+        return result;
+    }
+
+
+
 }

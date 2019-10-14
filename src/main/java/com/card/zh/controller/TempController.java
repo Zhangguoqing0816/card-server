@@ -33,37 +33,37 @@ public class TempController {
 
     @ApiOperation(value = "getAll", notes = "all")
     @GetMapping("getAllTemp")
-    public String getAllTemp1() {
+    public ResultData getAllTemp1() {
         Wrapper<Temp> wrapper = new EntityWrapper<>();
         List<Temp> temps = iTempService.selectList(wrapper);
-        return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", temps);
+        return ResultData.success("成功", temps);
     }
 
     @ApiOperation(value = "根据条件获取", notes = "根据条件获取")
     @GetMapping("getTempBy")
-    public String getTempBy() {
+    public ResultData getTempBy() {
         Wrapper<Temp> wrapper = new EntityWrapper<>();
         wrapper.eq("zhang_gq", "5");
         List<Temp> temps = iTempService.selectList(wrapper);
-        return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", temps);
+        return ResultData.success("成功", temps);
     }
 
     @ApiOperation(value = "getErr", notes = "错误返回演示")
     @GetMapping("getErr")
-    public String getErr() {
+    public ResultData getErr() {
         try {
             int x = 1 / 0;
-            return new ResultData<List<Temp>>().assembleJsonInfo(1, "成功", null);
+            return ResultData.success();
         } catch (Exception e) {
             e.printStackTrace();
-            return new ResultData<List<Temp>>().assembleJsonInfo(0, "失败", null);
+            return ResultData.error();
         }
     }
 
     @ApiOperation(value = "getToXml", notes = "getToXml")
     @GetMapping("getToXml")
-    public String getToXml() {
+    public ResultData getToXml() {
         Temp temp = iTempService.queryBy("6");
-        return new ResultData<Temp>().assembleJsonInfo(1, "成功", temp);
+        return ResultData.success();
     }
 }

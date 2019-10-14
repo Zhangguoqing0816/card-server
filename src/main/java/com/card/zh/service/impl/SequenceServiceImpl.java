@@ -23,11 +23,11 @@ public class SequenceServiceImpl implements SequenceService {
 
     /**
      * 根据类型获取序列
-     *
      * @param idName
      * @return nextval
      */
     private long getSequence(String idName) {
+        //创建同步锁对象
         lock.lock();
         Sequence sequence = sequenceMapper.selectSno(idName);
         Long nextval = null;

@@ -33,24 +33,25 @@ public class LoginController {
 
     @PostMapping("/login")
     @ApiOperation(value = "用户登陆", notes = "用户登录")
-    public String login(@RequestBody LoginRequest loginRequest) {
+    public ResultData login(@RequestBody LoginRequest loginRequest) {
         String result = loginService.loginCheckInfo(loginRequest);
         if (result.contains("ok")) {
             SessionModel sessionModel = loginService.getSessionModel(result.replace("ok", ""));
-            return new ResultData<SessionModel>().assembleJsonInfo(0, "登陆成功", sessionModel);
+            return ResultData.success("登陆成功", sessionModel);
         } else {
-            return new ResultData<SessionModel>().assembleJsonInfo(1, result, null);
+            return ResultData.error(result);
         }
     }
 
     @PostMapping("/updatePassword")
     @ApiOperation(value = "修改密码", notes = "修改密码")
-    public String update(@RequestBody LoginRequest loginRequest) {
+    public ResultData update(@RequestBody LoginRequest loginRequest) {
         String result = loginService.updatePassword(loginRequest);
         if (result.contains("ok")) {
-            return new ResultData<String>().assembleJsonInfo(0, "登陆成功", null);
+            return ResultData.success("登陆成功", null);
         } else {
-            return new ResultData<SessionModel>().assembleJsonInfo(1, result, null);
+            return ResultData.error(result);
         }
     }
+
 }
