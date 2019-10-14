@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.card.zh.mapper.UserInfoContentMapper">
+    <resultMap id="BaseResultMap" type="com.card.zh.entity.UserInfoContent">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_info_id" property="userInfoId" jdbcType="VARCHAR"/>
+        <result column="content_url" property="contentUrl" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_info_id, content_url
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info_content
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from user_info_content
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <insert id="insert" parameterType="com.card.zh.entity.UserInfoContent">
+    insert into user_info_content (id, user_info_id, content_url
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userInfoId,jdbcType=VARCHAR}, #{contentUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.card.zh.entity.UserInfoContent">
+        insert into user_info_content
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userInfoId != null">
+                user_info_id,
+            </if>
+            <if test="contentUrl != null">
+                content_url,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="userInfoId != null">
+                #{userInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="contentUrl != null">
+                #{contentUrl,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.card.zh.entity.UserInfoContent">
+        update user_info_content
+        <set>
+            <if test="userInfoId != null">
+                user_info_id = #{userInfoId,jdbcType=VARCHAR},
+            </if>
+            <if test="contentUrl != null">
+                content_url = #{contentUrl,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.card.zh.entity.UserInfoContent">
+    update user_info_content
+    set user_info_id = #{userInfoId,jdbcType=VARCHAR},
+      content_url = #{contentUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

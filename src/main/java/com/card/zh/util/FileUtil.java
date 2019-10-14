@@ -4,8 +4,10 @@ package com.card.zh.util;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.LineIterator;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
 
@@ -135,7 +137,6 @@ public class FileUtil {
 
     /**
      * 获取路径中的所有文件
-     *
      * @param path
      * @param urls
      */
@@ -154,6 +155,83 @@ public class FileUtil {
             }
         } else {
             urls.add(path);
+        }
+    }
+
+    /**
+     * 文件转化为 byte 数组
+     *
+     * @param imgPath
+     * @return
+     */
+    public static byte[] fileToByte1(String imgPath) {
+        byte[] bytes = null;
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        try {
+            BufferedImage bi = ImageIO.read(new File(imgPath));
+            ImageIO.write(bi, "png", out);
+            bytes = out.toByteArray();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                out.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return bytes;
+    }
+
+    /**
+     * 文件转化为 byte 数组
+     *
+     * @param filePath
+     * @return
+     */
+    public static byte[] fileToByte(String filePath) {
+        BufferedInputStream bufferedInputStream = null;
+        ByteArrayOutputStream byteArrayOutputStream = null;
+        try {
+            bufferedInputStream = new BufferedInputStream(new FileInputStream(filePath));
+            byteArrayOutputStream = new ByteArrayOutputStream(1024);
+            byte[] bytes = new byte[1024];
+            int size = 0;
+            while ((size = bufferedInputStream.read(bytes)) != -1) {
+                byteArrayOutputStream.write(bytes, 0, size);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                byteArrayOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        byte[] content = byteArrayOutputStream.toByteArray();
+        return content;
+    }
+
+    /**
+     * byte 数组 转为 文件并生成
+     *
+     * @param bytes
+     */
+    public static void ByteToFile(byte[] bytes) {
+        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
+        try {
+            File file = new File("G:\\haha.png");
+            BufferedImage bi = ImageIO.read(bis);
+            ImageIO.write(bi, "png", file);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

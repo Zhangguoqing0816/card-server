@@ -2,9 +2,11 @@ package com.card.zh.mapper;
 
 import com.card.zh.entity.Sequence;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 
 @Mapper
+@Repository
 public interface SequenceMapper {
 
     /**

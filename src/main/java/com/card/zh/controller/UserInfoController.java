@@ -1,21 +1,20 @@
 package com.card.zh.controller;
 
 import com.card.zh.entity.UserInfo;
+import com.card.zh.entity.UserInfoContent;
+import com.card.zh.model.request.UserInfoRequest;
+import com.card.zh.service.UserInfoContentService;
 import com.card.zh.service.UserInfoService;
 import com.card.zh.util.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -30,58 +29,24 @@ public class UserInfoController extends BaseController {
 
     @Autowired
     private UserInfoService userInfoService;
-
-
-    private String path = "C:\\Users\\zhiwang\\Desktop\\pic.png";
-
-    public static void main(String[] args) {
-        byte[] bytes = fileToByte("C:\\Users\\zhiwang\\Desktop\\pic.png");
-        ByteToFile(bytes);
-    }
-
-    public static byte[] fileToByte(String imgPath) {
-        byte[] bytes = null;
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        try {
-            BufferedImage bi = ImageIO.read(new File(imgPath));
-            ImageIO.write(bi, "png", out);
-            bytes = out.toByteArray();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return bytes;
-    }
-
-    public static void ByteToFile(byte[] bytes) {
-        ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
-        try {
-            File file = new File("G:\\haha.png");
-            BufferedImage bi = ImageIO.read(bis);
-            ImageIO.write(bi, "png", file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                bis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    @Autowired
+    private UserInfoContentService userInfoContentService;
 
     @ApiOperation(value = "addUser", notes = "addUser")
     @PostMapping("/addUser")
-    public String add() {
+    public String add(UserInfoRequest request) {
         UserInfo userInfo = new UserInfo();
+        BeanUtils.copyProperties(request, userInfo);
         userInfo.setId(genSeqNo("U", 5));
-        userInfo.setQqQrCode(fileToByte(path));
-        userInfoService.insert(userInfo);
+        List<UserInfoContent> userInfoContentList = new ArrayList<>();
+        if (null != request.getUserInfoContentList() && !request.getUserInfoContentList().isEmpty()) {
+            userInfoContentList = request.getUserInfoContentList();
+            userInfoContentList.forEach(userInfoContent -> {
+                userInfoContent.setId(genSeqNo("UC", 5));
+                userInfoContent.setUserInfoId(userInfo.getId());
+            });
+        }
+        userInfoService.addUser(userInfo, userInfoContentList);
         return new ResultData<String>().assembleJsonInfo(0, "插入成功", null);
     }
 

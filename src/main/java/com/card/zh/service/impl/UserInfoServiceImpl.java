@@ -2,10 +2,13 @@ package com.card.zh.service.impl;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.card.zh.entity.UserInfo;
+import com.card.zh.entity.UserInfoContent;
+import com.card.zh.mapper.UserInfoContentMapper;
 import com.card.zh.mapper.UserInfoMapper;
 import com.card.zh.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +25,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+    @Autowired
+    private UserInfoContentMapper userInfoContentMapper;
+
 
     @Override
     public List<UserInfo> getUsers() {
@@ -32,4 +38,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     public List<UserInfo> getUsersExcluseBlob() {
         return userInfoMapper.getUsersExcluseBlob();
     }
+
+    @Override
+    @Transactional
+    public void addUser(UserInfo userInfo, List<UserInfoContent> userInfoContents) {
+        userInfoMapper.insert(userInfo);
+        if (!userInfoContents.isEmpty()) {
+            userInfoContents.forEach(userInfoContent -> userInfoContentMapper.insert(userInfoContent));
+        }
+    }
+
+
 }
