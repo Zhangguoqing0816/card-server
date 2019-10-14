@@ -5,10 +5,10 @@ import com.card.zh.entity.UserInfoContent;
 import com.card.zh.model.request.UserInfoRequest;
 import com.card.zh.service.UserInfoContentService;
 import com.card.zh.service.UserInfoService;
+import com.card.zh.util.BeanUtil;
 import com.card.zh.util.ResultData;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +36,7 @@ public class UserInfoController extends BaseController {
     @PostMapping("/addUser")
     public String add(UserInfoRequest request) {
         UserInfo userInfo = new UserInfo();
-        BeanUtils.copyProperties(request, userInfo);
+        BeanUtil.copyProperties(request, userInfo);
         userInfo.setId(genSeqNo("U", 5));
         List<UserInfoContent> userInfoContentList = new ArrayList<>();
         if (null != request.getUserInfoContentList() && !request.getUserInfoContentList().isEmpty()) {
@@ -54,13 +54,6 @@ public class UserInfoController extends BaseController {
     @PostMapping("/getUsers")
     public String getUser() {
         List<UserInfo> users = userInfoService.getUsers();
-        return new ResultData<List<UserInfo>>().assembleJsonInfo(0, "search成功", users);
-    }
-
-    @ApiOperation(value = "getUsersExcludeBlob", notes = "getUsersExcludeBlob")
-    @PostMapping("/getUsersExcludeBlob")
-    public String getUsersExcludeBlob() {
-        List<UserInfo> users = userInfoService.getUsersExcluseBlob();
         return new ResultData<List<UserInfo>>().assembleJsonInfo(0, "search成功", users);
     }
 

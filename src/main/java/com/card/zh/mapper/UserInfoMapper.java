@@ -22,6 +22,4 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
     public List<UserInfo> getUsers();
 
-    public List<UserInfo> getUsersExcluseBlob();
-
 }

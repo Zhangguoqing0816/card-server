@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * <p>
@@ -59,7 +58,7 @@ public class UserInfo implements Serializable {
      * 微信二维码
      */
     @TableField("wechat_qr_code")
-    private byte[] wechatQrCode;
+    private String wechatQrCode;
 
     /**
      * QQ号码
@@ -70,7 +69,7 @@ public class UserInfo implements Serializable {
      * QQ二维码
      */
     @TableField("qq_qr_code")
-    private byte[] qqQrCode;
+    private String qqQrCode;
     /**
      * 头像url
      */
@@ -151,6 +150,14 @@ public class UserInfo implements Serializable {
     @TableField("account_status")
     private String accountStatus;
 
+    /**
+     * 界面风格
+     * AUTO - 默认风格
+     */
+    @TableField("page_style")
+    private String pageStyle = "AUTO";
+
+
     public String getId() {
         return id;
     }
@@ -223,12 +230,12 @@ public class UserInfo implements Serializable {
         this.wechatNumber = wechatNumber;
     }
 
-    public void setWechatQrCode(byte[] wechatQrCode) {
-        this.wechatQrCode = wechatQrCode;
+    public String getWechatQrCode() {
+        return wechatQrCode;
     }
 
-    public void setQqQrCode(byte[] qqQrCode) {
-        this.qqQrCode = qqQrCode;
+    public void setWechatQrCode(String wechatQrCode) {
+        this.wechatQrCode = wechatQrCode;
     }
 
     public String getQqNumber() {
@@ -239,12 +246,12 @@ public class UserInfo implements Serializable {
         this.qqNumber = qqNumber;
     }
 
-    public byte[] getWechatQrCode() {
-        return wechatQrCode;
+    public String getQqQrCode() {
+        return qqQrCode;
     }
 
-    public byte[] getQqQrCode() {
-        return qqQrCode;
+    public void setQqQrCode(String qqQrCode) {
+        this.qqQrCode = qqQrCode;
     }
 
     public String getHeadSculpture() {
@@ -375,6 +382,14 @@ public class UserInfo implements Serializable {
         this.accountStatus = accountStatus;
     }
 
+    public String getPageStyle() {
+        return pageStyle;
+    }
+
+    public void setPageStyle(String pageStyle) {
+        this.pageStyle = pageStyle;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -387,9 +402,9 @@ public class UserInfo implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", wechatNumber='" + wechatNumber + '\'' +
-                ", wechatQrCode=" + Arrays.toString(wechatQrCode) +
+                ", wechatQrCode=" + wechatQrCode +
                 ", qqNumber='" + qqNumber + '\'' +
-                ", qqQrCode=" + Arrays.toString(qqQrCode) +
+                ", qqQrCode=" + qqQrCode +
                 ", headSculpture='" + headSculpture + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", companyPhone='" + companyPhone + '\'' +
@@ -406,6 +421,7 @@ public class UserInfo implements Serializable {
                 ", bankUserName='" + bankUserName + '\'' +
                 ", bankAccount='" + bankAccount + '\'' +
                 ", accountStatus='" + accountStatus + '\'' +
+                ", pageStyle='" + pageStyle + '\'' +
                 '}';
     }
 }

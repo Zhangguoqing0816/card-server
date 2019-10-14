@@ -18,7 +18,5 @@ public interface UserInfoService extends IService<UserInfo> {
 
     public List<UserInfo> getUsers();
 
-    public List<UserInfo> getUsersExcluseBlob();
-
     public void addUser(UserInfo userInfo, List<UserInfoContent> userInfoContents);
 }

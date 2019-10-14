@@ -27,37 +27,25 @@
         <result column="bank_user_name" property="bankUserName" jdbcType="VARCHAR"/>
         <result column="bank_account" property="bankAccount" jdbcType="VARCHAR"/>
         <result column="account_status" property="accountStatus" jdbcType="VARCHAR"/>
-        <result column="wechat_qr_code" property="wechatQrCode" jdbcType="LONGVARBINARY"/>
-        <result column="qq_qr_code" property="qqQrCode" jdbcType="LONGVARBINARY"/>
+        <result column="wechat_qr_code" property="wechatQrCode" jdbcType="VARCHAR"/>
+        <result column="qq_qr_code" property="qqQrCode" jdbcType="VARCHAR"/>
+        <result column="page_style" property="pageStyle" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
     id, user_name, account, nick_name, sex, phone, email, password, wechat_number, qq_number,
     head_sculpture, company_name, company_phone, company_fax, company_address, company_job_name,
     company_internet_address, bgsound, company_business, company_supply, company_demand,
-    company_map_place, bank_name, bank_user_name, bank_account, account_status
-  </sql>
-    <sql id="Blob_Column_List">
-    qq_qr_code, wechat_qr_code
+    company_map_place, bank_name, bank_user_name, bank_account, account_status, page_style,qq_qr_code, wechat_qr_code
   </sql>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
         select
         <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
         from user_info
         where id = #{id,jdbcType=VARCHAR}
     </select>
 
     <select id="getUsers" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        ,
-        <include refid="Blob_Column_List"/>
-        from user_info
-    </select>
-
-    <select id="getUsersExcluseBlob" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from user_info
@@ -78,7 +66,7 @@
       bgsound, company_business, company_supply,
       company_demand, company_map_place, bank_name,
       bank_user_name, bank_account, account_status,
-      wechat_qr_code, qq_qr_code)
+      wechat_qr_code, qq_qr_code, page_style)
     values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR},
       #{nickName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{wechatNumber,jdbcType=VARCHAR},
@@ -88,7 +76,7 @@
       #{bgsound,jdbcType=VARCHAR}, #{companyBusiness,jdbcType=VARCHAR}, #{companySupply,jdbcType=VARCHAR},
       #{companyDemand,jdbcType=VARCHAR}, #{companyMapPlace,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
       #{bankUserName,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{accountStatus,jdbcType=VARCHAR},
-      #{wechatQrCode,jdbcType=LONGVARBINARY}, #{qqQrCode,jdbcType=LONGVARBINARY})
+      #{wechatQrCode,jdbcType=LONGVARBINARY}, #{qqQrCode,jdbcType=LONGVARBINARY}, #{pageStyle,jdbcType=VARCHAR})
   </insert>
 
     <insert id="insertSelective" parameterType="com.card.zh.entity.UserInfo">
@@ -178,6 +166,9 @@
             <if test="qqQrCode != null">
                 qq_qr_code,
             </if>
+            <if test="pageStyle != null">
+                page_style,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -264,6 +255,9 @@
             <if test="qqQrCode != null">
                 #{qqQrCode,jdbcType=LONGVARBINARY},
             </if>
+            <if test="pageStyle != null">
+                #{pageStyle,jdbcType=VARCHAR}
+            </if>
         </trim>
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.card.zh.entity.UserInfo">
@@ -349,6 +343,9 @@
             </if>
             <if test="qqQrCode != null">
                 qq_qr_code = #{qqQrCode,jdbcType=LONGVARBINARY},
+            </if>
+            <if test="pageStyle != null">
+                page_style = #{pageStyle,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=VARCHAR}

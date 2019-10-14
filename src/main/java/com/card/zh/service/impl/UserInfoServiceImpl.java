@@ -35,11 +35,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     }
 
     @Override
-    public List<UserInfo> getUsersExcluseBlob() {
-        return userInfoMapper.getUsersExcluseBlob();
-    }
-
-    @Override
     @Transactional
     public void addUser(UserInfo userInfo, List<UserInfoContent> userInfoContents) {
         userInfoMapper.insert(userInfo);

@@ -57,7 +57,7 @@ public class UserInfoRequest {
      * 微信二维码
      */
     @ApiModelProperty("微信二维码")
-    private byte[] wechatQrCode;
+    private String wechatQrCode;
 
     /**
      * QQ号码
@@ -68,7 +68,7 @@ public class UserInfoRequest {
      * QQ二维码
      */
     @ApiModelProperty("QQ二维码")
-    private byte[] qqQrCode;
+    private String qqQrCode;
     /**
      * 头像url
      */
@@ -149,6 +149,12 @@ public class UserInfoRequest {
      */
     @ApiModelProperty("账号状态")
     private String accountStatus;
+
+    /**
+     * 界面风格
+     */
+    @ApiModelProperty("界面风格")
+    private String pageStyle;
 
     @ApiModelProperty("内容")
     private List<UserInfoContent> userInfoContentList;
