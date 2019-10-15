@@ -36,8 +36,8 @@ public class AttachController extends BaseController {
     @Value("${file.download.dirPath}")
     private String downloadPath;
 
-    @Value("${nginx.attach.port}")
-    private String nginxAttachPort;
+    @Value("${nginx.attach.address}")
+    private String nginxAttachAddress;
 
     @Autowired
     private AttachService attachService;
@@ -88,9 +88,9 @@ public class AttachController extends BaseController {
             }
             //保存附件信息到数据库
             Attach attach = new Attach();
-            attach.setAttachName(inFile.getName());
+            attach.setAttachName(fileName);
             attach.setAttachType(fileName.substring(fileName.lastIndexOf(".")));
-            attach.setAttachUrl(request.getRemoteAddr() + ":" + nginxAttachPort + "/upload/" + fileName);
+            attach.setAttachUrl(nginxAttachAddress + "/upload/" + fileName);
             attach.setId(genSeqNo("file-", 5));
             attachService.insert(attach);
             return ResultData.success();
