@@ -1,6 +1,5 @@
 package com.card.zh.model.request;
 
-import com.card.zh.entity.UserInfoContent;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -156,6 +155,6 @@ public class UserInfoRequest {
     @ApiModelProperty("界面风格")
     private String pageStyle;
 
-    @ApiModelProperty("内容")
-    private List<UserInfoContent> userInfoContentList;
+    @ApiModelProperty("内容图片上传后反返回的所有ID")
+    private List<String> attachIdList;
 }

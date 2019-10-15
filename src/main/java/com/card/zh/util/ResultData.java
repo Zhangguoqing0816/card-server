@@ -22,7 +22,7 @@ public class ResultData implements Serializable {
 
     /**
      *  成功 resultCode =0； 失败 resultCode = 1
-     * @return
+     * @return 返回 "操作成功" 提示信息
      */
     public static ResultData success() {
         ResultData result = new ResultData();
@@ -33,7 +33,8 @@ public class ResultData implements Serializable {
     }
 
     /**
-     *  成功 resultCode =0； 失败 resultCode = 1
+     * 成功 resultCode =0； 失败 resultCode = 1
+     * @param message 返回的提示消息
      * @return
      */
     public static ResultData success(String message) {
@@ -46,20 +47,8 @@ public class ResultData implements Serializable {
 
     /**
      * 成功 resultCode =0； 失败 resultCode = 1
-     *
-     * @return
-     */
-    public static ResultData success(Object data) {
-        ResultData result = new ResultData();
-        result.setResultCode(0);
-        result.setMessage("操作成功");
-        result.setData(data);
-        return result;
-    }
-
-    /**
-     * 成功 resultCode =0； 失败 resultCode = 1
-     *
+     * @param message 返回的提示消息
+     * @param data 返回的对象数据
      * @return
      */
     public static ResultData success(String message, Object data) {

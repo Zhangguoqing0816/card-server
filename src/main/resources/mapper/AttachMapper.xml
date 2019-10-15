@@ -8,6 +8,7 @@
         <result column="attach_name" property="attachName"/>
         <result column="attach_url" property="attachUrl"/>
         <result column="attach_type" property="attachType"/>
+        <result column="dominant_id" property="dominantId"/>
     </resultMap>
 
 </mapper>

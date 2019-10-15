@@ -93,7 +93,7 @@ public class AttachController extends BaseController {
             attach.setAttachUrl(nginxAttachAddress + "/upload/" + fileName);
             attach.setId(genSeqNo("file-", 5));
             attachService.insert(attach);
-            return ResultData.success();
+            return ResultData.success("上传成功", attach.getId());
         } catch (IOException e) {
             e.printStackTrace();
             return ResultData.error(e.getMessage());

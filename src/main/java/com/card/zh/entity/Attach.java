@@ -17,7 +17,7 @@ public class Attach implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 附件表逐渐
+     * 附件表主键
      */
     private String id;
     /**
@@ -36,6 +36,11 @@ public class Attach implements Serializable {
     @TableField("attach_type")
     private String attachType;
 
+    /**
+     * 主表关联ID
+     */
+    @TableField("dominant_id")
+    private String dominantId;
 
     public String getId() {
         return id;
@@ -69,13 +74,22 @@ public class Attach implements Serializable {
         this.attachType = attachType;
     }
 
+    public String getDominantId() {
+        return dominantId;
+    }
+
+    public void setDominantId(String dominantId) {
+        this.dominantId = dominantId;
+    }
+
     @Override
     public String toString() {
         return "Attach{" +
-                ", id=" + id +
-                ", attachName=" + attachName +
-                ", attachUrl=" + attachUrl +
-                ", attachType=" + attachType +
-                "}";
+                "id='" + id + '\'' +
+                ", attachName='" + attachName + '\'' +
+                ", attachUrl='" + attachUrl + '\'' +
+                ", attachType='" + attachType + '\'' +
+                ", dominantId='" + dominantId + '\'' +
+                '}';
     }
 }

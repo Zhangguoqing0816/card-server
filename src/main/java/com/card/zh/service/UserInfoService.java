@@ -2,7 +2,6 @@ package com.card.zh.service;
 
 import com.baomidou.mybatisplus.service.IService;
 import com.card.zh.entity.UserInfo;
-import com.card.zh.entity.UserInfoContent;
 
 import java.util.List;
 
@@ -18,5 +17,5 @@ public interface UserInfoService extends IService<UserInfo> {
 
     public List<UserInfo> getUsers();
 
-    public void addUser(UserInfo userInfo, List<UserInfoContent> userInfoContents);
+    public void addUser(UserInfo userInfo, List<String> attachIdList);
 }

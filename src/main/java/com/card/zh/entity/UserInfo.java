@@ -109,6 +109,12 @@ public class UserInfo implements Serializable {
      * 背景音乐地址
      */
     private String bgsound;
+
+    /**
+     * 内容
+     */
+    private String content;
+
     /**
      * 公司业务
      */
@@ -390,6 +396,14 @@ public class UserInfo implements Serializable {
         this.pageStyle = pageStyle;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "UserInfo{" +
@@ -402,9 +416,9 @@ public class UserInfo implements Serializable {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", wechatNumber='" + wechatNumber + '\'' +
-                ", wechatQrCode=" + wechatQrCode +
+                ", wechatQrCode='" + wechatQrCode + '\'' +
                 ", qqNumber='" + qqNumber + '\'' +
-                ", qqQrCode=" + qqQrCode +
+                ", qqQrCode='" + qqQrCode + '\'' +
                 ", headSculpture='" + headSculpture + '\'' +
                 ", companyName='" + companyName + '\'' +
                 ", companyPhone='" + companyPhone + '\'' +
@@ -413,6 +427,7 @@ public class UserInfo implements Serializable {
                 ", companyJobName='" + companyJobName + '\'' +
                 ", companyInternetAddress='" + companyInternetAddress + '\'' +
                 ", bgsound='" + bgsound + '\'' +
+                ", content='" + content + '\'' +
                 ", companyBusiness='" + companyBusiness + '\'' +
                 ", companySupply='" + companySupply + '\'' +
                 ", companyDemand='" + companyDemand + '\'' +
@@ -424,4 +439,5 @@ public class UserInfo implements Serializable {
                 ", pageStyle='" + pageStyle + '\'' +
                 '}';
     }
+
 }

@@ -19,6 +19,7 @@
         <result column="company_job_name" property="companyJobName" jdbcType="VARCHAR"/>
         <result column="company_internet_address" property="companyInternetAddress" jdbcType="VARCHAR"/>
         <result column="bgsound" property="bgsound" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="company_business" property="companyBusiness" jdbcType="VARCHAR"/>
         <result column="company_supply" property="companySupply" jdbcType="VARCHAR"/>
         <result column="company_demand" property="companyDemand" jdbcType="VARCHAR"/>
@@ -34,7 +35,7 @@
     <sql id="Base_Column_List">
     id, user_name, account, nick_name, sex, phone, email, password, wechat_number, qq_number,
     head_sculpture, company_name, company_phone, company_fax, company_address, company_job_name,
-    company_internet_address, bgsound, company_business, company_supply, company_demand,
+    company_internet_address, bgsound, content, company_business, company_supply, company_demand,
     company_map_place, bank_name, bank_user_name, bank_account, account_status, page_style,qq_qr_code, wechat_qr_code
   </sql>
 
@@ -63,7 +64,7 @@
       qq_number, head_sculpture, company_name,
       company_phone, company_fax, company_address,
       company_job_name, company_internet_address,
-      bgsound, company_business, company_supply,
+      bgsound, content, company_business, company_supply,
       company_demand, company_map_place, bank_name,
       bank_user_name, bank_account, account_status,
       wechat_qr_code, qq_qr_code, page_style)
@@ -73,7 +74,7 @@
       #{qqNumber,jdbcType=VARCHAR}, #{headSculpture,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR},
       #{companyPhone,jdbcType=VARCHAR}, #{companyFax,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR},
       #{companyJobName,jdbcType=VARCHAR}, #{companyInternetAddress,jdbcType=VARCHAR},
-      #{bgsound,jdbcType=VARCHAR}, #{companyBusiness,jdbcType=VARCHAR}, #{companySupply,jdbcType=VARCHAR},
+      #{bgsound,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{companyBusiness,jdbcType=VARCHAR}, #{companySupply,jdbcType=VARCHAR},
       #{companyDemand,jdbcType=VARCHAR}, #{companyMapPlace,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR},
       #{bankUserName,jdbcType=VARCHAR}, #{bankAccount,jdbcType=VARCHAR}, #{accountStatus,jdbcType=VARCHAR},
       #{wechatQrCode,jdbcType=LONGVARBINARY}, #{qqQrCode,jdbcType=LONGVARBINARY}, #{pageStyle,jdbcType=VARCHAR})
@@ -135,6 +136,9 @@
             </if>
             <if test="bgsound != null">
                 bgsound,
+            </if>
+            <if test="content != null">
+                content,
             </if>
             <if test="companyBusiness != null">
                 company_business,
@@ -225,6 +229,9 @@
             <if test="bgsound != null">
                 #{bgsound,jdbcType=VARCHAR},
             </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
             <if test="companyBusiness != null">
                 #{companyBusiness,jdbcType=VARCHAR},
             </if>
@@ -313,6 +320,9 @@
             </if>
             <if test="bgsound != null">
                 bgsound = #{bgsound,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
             </if>
             <if test="companyBusiness != null">
                 company_business = #{companyBusiness,jdbcType=VARCHAR},

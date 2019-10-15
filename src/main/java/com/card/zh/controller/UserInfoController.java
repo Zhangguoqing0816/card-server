@@ -1,7 +1,6 @@
 package com.card.zh.controller;
 
 import com.card.zh.entity.UserInfo;
-import com.card.zh.entity.UserInfoContent;
 import com.card.zh.model.request.UserInfoRequest;
 import com.card.zh.service.UserInfoContentService;
 import com.card.zh.service.UserInfoService;
@@ -12,7 +11,6 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,15 +34,11 @@ public class UserInfoController extends BaseController {
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(request, userInfo);
         userInfo.setId(genSeqNo("U", 5));
-        List<UserInfoContent> userInfoContentList = new ArrayList<>();
-        if (null != request.getUserInfoContentList() && !request.getUserInfoContentList().isEmpty()) {
-            userInfoContentList = request.getUserInfoContentList();
-            userInfoContentList.forEach(userInfoContent -> {
-                userInfoContent.setId(genSeqNo("UC", 5));
-                userInfoContent.setUserInfoId(userInfo.getId());
-            });
+        List<String> attachIdList = request.getAttachIdList();
+        if (null != attachIdList && !attachIdList.isEmpty()) {
+            userInfo.setContent(genSeqNo("UC", 5));
         }
-        userInfoService.addUser(userInfo, userInfoContentList);
+        userInfoService.addUser(userInfo, attachIdList);
         return ResultData.success("插入成功");
     }
 
