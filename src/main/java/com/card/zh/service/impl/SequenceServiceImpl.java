@@ -1,10 +1,10 @@
 package com.card.zh.service.impl;
 
-import com.card.zh.comp.config.SpringContextUtils;
 import com.card.zh.entity.Sequence;
 import com.card.zh.mapper.SequenceMapper;
 import com.card.zh.service.SequenceService;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -18,7 +18,8 @@ public class SequenceServiceImpl implements SequenceService {
 
     //创建同步锁对象
     private static Lock lock = new ReentrantLock();
-    private SequenceMapper sequenceMapper = SpringContextUtils.getBean(SequenceMapper.class);
+    @Autowired
+    private SequenceMapper sequenceMapper;
 
     /**
      * 根据类型获取序列
