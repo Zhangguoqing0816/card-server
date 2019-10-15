@@ -15,11 +15,10 @@ import java.util.concurrent.locks.ReentrantLock;
 
 @Service("SequenceService")
 public class SequenceServiceImpl implements SequenceService {
-    private static ThreadLocal<SequenceMapper> threadLocal = new ThreadLocal<SequenceMapper>();
 
     //创建同步锁对象
     private static Lock lock = new ReentrantLock();
-    private SequenceMapper sequenceMapper = getCurrentMapper();
+    private SequenceMapper sequenceMapper = SpringContextUtils.getBean(SequenceMapper.class);
 
     /**
      * 根据类型获取序列
@@ -42,29 +41,10 @@ public class SequenceServiceImpl implements SequenceService {
             sequence.setNextval(nextval + 1);
             sequence.setIdName(idName);
             sequenceMapper.updateSno(sequence);
-
         }
         lock.unlock();
         return nextval;
     }
-
-
-    /**
-     * 在同一个对象中读取序列
-     *
-     * @return
-     */
-    private SequenceMapper getCurrentMapper() {
-        lock.lock();
-        SequenceMapper mapper = threadLocal.get();
-        if (mapper == null) {
-            mapper = SpringContextUtils.getBean(SequenceMapper.class);
-            threadLocal.set(mapper);
-        }
-        lock.lock();
-        return mapper;
-    }
-
 
     /**
      * 获取字符串类型的序列
