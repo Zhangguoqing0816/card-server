@@ -33,8 +33,6 @@ public class AttachController extends BaseController {
     @Value("${file.upload.dirPath}")
     private String uploadPath;
 
-    @Value("${file.download.dirPath}")
-    private String downloadPath;
 
     @Value("${nginx.attach.address}")
     private String nginxAttachAddress;
