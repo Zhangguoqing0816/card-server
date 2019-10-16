@@ -63,18 +63,25 @@ public class AttachController extends BaseController {
         if (inFile.isEmpty()) {
             return ResultData.error();
         }
+
+        File requestFile = new File(inFile.getOriginalFilename());
+        String realFileName = requestFile.getName();
+        Attach attach = new Attach();
+        attach.setId(genSeqNo("file-", 5));
+        attach.setAttachName(realFileName);
+        attach.setAttachType(realFileName.substring(realFileName.lastIndexOf(".")));
+
         OutputStream out = null;
         InputStream inputStream = null;
-        File requestFile = new File(inFile.getOriginalFilename());
-        String fileName = requestFile.getName();
-        logger.info("开始上传文件：" + fileName);
+        logger.info("开始上传文件：" + realFileName);
         try {
             inputStream = inFile.getInputStream();
             File file = new File(uploadPath);
             if (!file.exists()) {
                 file.mkdirs();
             }
-            String path = uploadPath + "/" + fileName;
+            String newFileName = attach.getId() + attach.getAttachType();
+            String path = uploadPath + "/" + newFileName;
             logger.info("文件上传的路径是：" + path);
             File outFile = new File(path);
             if (!outFile.exists()) {
@@ -86,12 +93,8 @@ public class AttachController extends BaseController {
             while ((size = inputStream.read(bytes)) != -1) {
                 out.write(bytes, 0, size);
             }
+            attach.setAttachUrl(nginxAttachAddress + "/upload/" + newFileName);
             //保存附件信息到数据库
-            Attach attach = new Attach();
-            attach.setAttachName(fileName);
-            attach.setAttachType(fileName.substring(fileName.lastIndexOf(".")));
-            attach.setAttachUrl(nginxAttachAddress + "/upload/" + fileName);
-            attach.setId(genSeqNo("file-", 5));
             attachService.insert(attach);
             return ResultData.success("上传成功", attach.getId());
         } catch (IOException e) {
