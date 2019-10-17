@@ -12,7 +12,7 @@ import java.io.Serializable;
  */
 @Data
 public class SessionModel implements Serializable {
-
+    private String id;
     /**
      * 用户名称
      */
