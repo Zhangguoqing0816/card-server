@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -43,7 +41,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoMapper.insert(userInfo);
         //内容图片
         if (null != attachIdList && !attachIdList.isEmpty()) {
-            Map<String, Object> map = new HashMap<>();
             attachIdList.forEach(attachId -> {
                 Attach attach = attachMapper.selectById(attachId);
                 attach.setDominantId(userInfo.getContent());

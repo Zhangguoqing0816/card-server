@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.card.zh.mapper.ProductDescriptionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.card.zh.entity.ProductDescription">
+        <id column="id" property="id"/>
+        <result column="user_info_id" property="userInfoId"/>
+        <result column="pro_name" property="proName"/>
+        <result column="pro_price" property="proPrice"/>
+        <result column="pro_sort" property="proSort"/>
+        <result column="pro_order_type" property="proOrderType"/>
+        <result column="pro_img" property="proImg"/>
+        <result column="pro_content" property="proContent"/>
+    </resultMap>
+
+</mapper>

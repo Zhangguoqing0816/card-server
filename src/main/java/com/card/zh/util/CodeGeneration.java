@@ -22,7 +22,7 @@ public class CodeGeneration {
      */
     public static void main(String[] args) {
         //传参数据库表名称
-        String tableName = "attach";
+        String tableName = "product_description";
         generationCode(tableName);
     }
 
