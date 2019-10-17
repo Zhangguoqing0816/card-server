@@ -2,7 +2,6 @@ package com.card.zh.controller;
 
 import com.card.zh.entity.UserInfo;
 import com.card.zh.model.request.UserInfoRequest;
-import com.card.zh.service.UserInfoContentService;
 import com.card.zh.service.UserInfoService;
 import com.card.zh.util.BeanUtil;
 import com.card.zh.util.ResultData;
@@ -25,8 +24,6 @@ public class UserInfoController extends BaseController {
 
     @Autowired
     private UserInfoService userInfoService;
-    @Autowired
-    private UserInfoContentService userInfoContentService;
 
     @ApiOperation(value = "addUser", notes = "addUser")
     @PostMapping("/addUser")

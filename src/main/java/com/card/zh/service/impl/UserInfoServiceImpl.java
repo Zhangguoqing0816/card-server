@@ -28,9 +28,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
     @Autowired
     private UserInfoMapper userInfoMapper;
 
-//    @Autowired
-////    private UserInfoContentMapper userInfoContentMapper;
-
     @Autowired
     private AttachMapper attachMapper;
 
@@ -47,8 +44,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         //内容图片
         if (null != attachIdList && !attachIdList.isEmpty()) {
             Map<String, Object> map = new HashMap<>();
-            attachIdList.forEach(attrchId -> {
-                Attach attach = attachMapper.selectById(attrchId);
+            attachIdList.forEach(attachId -> {
+                Attach attach = attachMapper.selectById(attachId);
                 attach.setDominantId(userInfo.getContent());
                 attachMapper.updateById(attach);
             });
