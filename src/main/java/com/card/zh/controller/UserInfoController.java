@@ -10,7 +10,9 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther:
@@ -28,6 +30,12 @@ public class UserInfoController extends BaseController {
     @ApiOperation(value = "addUser", notes = "addUser")
     @PostMapping("/addUser")
     public ResultData add(@RequestBody UserInfoRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("email", request.getEmail());
+        List<UserInfo> userInfos = userInfoService.selectByMap(map);
+        if (!userInfos.isEmpty()) {
+            return ResultData.error("已存在相同的邮箱");
+        }
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(request, userInfo);
         userInfo.setId(genSeqNo("U", 5));
@@ -36,7 +44,7 @@ public class UserInfoController extends BaseController {
             userInfo.setContent(genSeqNo("UC", 5));
         }
         userInfoService.addUser(userInfo, attachIdList);
-        return ResultData.success("插入成功");
+        return ResultData.success("插入成功", userInfo.getId());
     }
 
     @ApiOperation(value = "getUsers", notes = "getUsers")
