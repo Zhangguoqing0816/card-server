@@ -18,11 +18,6 @@ public class UserInfoRequest {
     @ApiModelProperty("用户名称")
     private String userName;
     /**
-     * 登录账号
-     */
-//    @ApiModelProperty("登录账号")
-//    private String account;
-    /**
      * 用户昵称
      */
     @ApiModelProperty("用户昵称")

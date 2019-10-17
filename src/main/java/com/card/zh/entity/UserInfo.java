@@ -27,10 +27,6 @@ public class UserInfo implements Serializable {
     @TableField("user_name")
     private String userName;
     /**
-     * 登录账号
-     */
-    //private String account;
-    /**
      * 用户昵称
      */
     @TableField("nick_name")
@@ -172,7 +168,6 @@ public class UserInfo implements Serializable {
         return "UserInfo{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
-                // ", account='" + account + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", phone='" + phone + '\'' +

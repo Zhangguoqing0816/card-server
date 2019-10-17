@@ -18,10 +18,6 @@ public class SessionModel implements Serializable {
      */
     private String userName;
     /**
-     * 登录账号
-     */
-    //private String account;
-    /**
      * 用户昵称
      */
     private String nickName;

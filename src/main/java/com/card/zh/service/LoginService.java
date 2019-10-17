@@ -76,7 +76,6 @@ public class LoginService {
      */
     public String loginCheckInfo(LoginRequest request) {
         Map<String, Object> map = new HashMap<>();
-        //map.put("account", request.getAccount());
         map.put("email", request.getEmail());
         List<UserInfo> userInfos = userInfoService.selectByMap(map);
         String result = "ok";
@@ -87,7 +86,6 @@ public class LoginService {
         } else if (!((String) session.getAttribute("validateCode")).equals(request.getAuthCode())) {
             result = "登陆失败，验证码错误";
         } else {
-            //result += userInfos.get(0).getAccount();
             result += userInfos.get(0).getEmail();
         }
         return result;
@@ -121,7 +119,6 @@ public class LoginService {
     public String updatePassword(LoginRequest request) {
         String result = "ok";
         Map<String, Object> map = new HashMap<>();
-//        map.put("account", request.getAccount());
         map.put("email", request.getEmail());
         List<UserInfo> userInfos = userInfoService.selectByMap(map);
         if (userInfos.isEmpty()) {
