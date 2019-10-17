@@ -41,7 +41,7 @@ public class Filter extends OncePerRequestFilter {
         }
         String account = request.getHeader("authorization");
         if (StringUtils.isBlank(account)) {
-            log.info("No Login.....");
+            log.info("No Login.....Plesse go to Login.....");
             response.setStatus(403);
             return;
         }
