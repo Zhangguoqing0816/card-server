@@ -3,7 +3,6 @@
 <mapper namespace="com.card.zh.mapper.UserInfoMapper">
     <resultMap id="BaseResultMap" type="com.card.zh.entity.UserInfo">
         <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="account" property="account" jdbcType="VARCHAR"/>
         <result column="nick_name" property="nickName" jdbcType="VARCHAR"/>
         <result column="sex" property="sex" jdbcType="VARCHAR"/>
         <result column="phone" property="phone" jdbcType="VARCHAR"/>
@@ -33,7 +32,7 @@
         <result column="page_style" property="pageStyle" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_name, account, nick_name, sex, phone, email, password, wechat_number, qq_number,
+    id, user_name, nick_name, sex, phone, email, password, wechat_number, qq_number,
     head_sculpture, company_name, company_phone, company_fax, company_address, company_job_name,
     company_internet_address, bgsound, content, company_business, company_supply, company_demand,
     company_map_place, bank_name, bank_user_name, bank_account, account_status, page_style,qq_qr_code, wechat_qr_code

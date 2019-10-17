@@ -10,8 +10,10 @@ import lombok.Data;
  */
 @Data
 public class LoginRequest {
-    @ApiModelProperty("登陆账号")
-    private String account;
+    //@ApiModelProperty("登陆账号")
+    //private String account;
+    @ApiModelProperty("邮箱")
+    private String email;
     @ApiModelProperty("登陆密码")
     private String password;
     @ApiModelProperty("验证码")

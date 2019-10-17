@@ -20,7 +20,7 @@ public class SessionModel implements Serializable {
     /**
      * 登录账号
      */
-    private String account;
+    //private String account;
     /**
      * 用户昵称
      */

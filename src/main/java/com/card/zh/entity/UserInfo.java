@@ -2,6 +2,7 @@ package com.card.zh.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @since 2019-10-14
  */
 @TableName("user_info")
+@Data
 public class UserInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,7 +29,7 @@ public class UserInfo implements Serializable {
     /**
      * 登录账号
      */
-    private String account;
+    //private String account;
     /**
      * 用户昵称
      */
@@ -154,7 +156,7 @@ public class UserInfo implements Serializable {
      * 账号状态
      */
     @TableField("account_status")
-    private String accountStatus;
+    private String accountStatus = "START";
 
     /**
      * 界面风格
@@ -164,252 +166,13 @@ public class UserInfo implements Serializable {
     private String pageStyle = "AUTO";
 
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getAccount() {
-        return account;
-    }
-
-    public void setAccount(String account) {
-        this.account = account;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getWechatNumber() {
-        return wechatNumber;
-    }
-
-    public void setWechatNumber(String wechatNumber) {
-        this.wechatNumber = wechatNumber;
-    }
-
-    public String getWechatQrCode() {
-        return wechatQrCode;
-    }
-
-    public void setWechatQrCode(String wechatQrCode) {
-        this.wechatQrCode = wechatQrCode;
-    }
-
-    public String getQqNumber() {
-        return qqNumber;
-    }
-
-    public void setQqNumber(String qqNumber) {
-        this.qqNumber = qqNumber;
-    }
-
-    public String getQqQrCode() {
-        return qqQrCode;
-    }
-
-    public void setQqQrCode(String qqQrCode) {
-        this.qqQrCode = qqQrCode;
-    }
-
-    public String getHeadSculpture() {
-        return headSculpture;
-    }
-
-    public void setHeadSculpture(String headSculpture) {
-        this.headSculpture = headSculpture;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    public String getCompanyPhone() {
-        return companyPhone;
-    }
-
-    public void setCompanyPhone(String companyPhone) {
-        this.companyPhone = companyPhone;
-    }
-
-    public String getCompanyFax() {
-        return companyFax;
-    }
-
-    public void setCompanyFax(String companyFax) {
-        this.companyFax = companyFax;
-    }
-
-    public String getCompanyAddress() {
-        return companyAddress;
-    }
-
-    public void setCompanyAddress(String companyAddress) {
-        this.companyAddress = companyAddress;
-    }
-
-    public String getCompanyJobName() {
-        return companyJobName;
-    }
-
-    public void setCompanyJobName(String companyJobName) {
-        this.companyJobName = companyJobName;
-    }
-
-    public String getCompanyInternetAddress() {
-        return companyInternetAddress;
-    }
-
-    public void setCompanyInternetAddress(String companyInternetAddress) {
-        this.companyInternetAddress = companyInternetAddress;
-    }
-
-    public String getBgsound() {
-        return bgsound;
-    }
-
-    public void setBgsound(String bgsound) {
-        this.bgsound = bgsound;
-    }
-
-    public String getCompanyBusiness() {
-        return companyBusiness;
-    }
-
-    public void setCompanyBusiness(String companyBusiness) {
-        this.companyBusiness = companyBusiness;
-    }
-
-    public String getCompanySupply() {
-        return companySupply;
-    }
-
-    public void setCompanySupply(String companySupply) {
-        this.companySupply = companySupply;
-    }
-
-    public String getCompanyDemand() {
-        return companyDemand;
-    }
-
-    public void setCompanyDemand(String companyDemand) {
-        this.companyDemand = companyDemand;
-    }
-
-    public String getCompanyMapPlace() {
-        return companyMapPlace;
-    }
-
-    public void setCompanyMapPlace(String companyMapPlace) {
-        this.companyMapPlace = companyMapPlace;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
-    public String getBankUserName() {
-        return bankUserName;
-    }
-
-    public void setBankUserName(String bankUserName) {
-        this.bankUserName = bankUserName;
-    }
-
-    public String getBankAccount() {
-        return bankAccount;
-    }
-
-    public void setBankAccount(String bankAccount) {
-        this.bankAccount = bankAccount;
-    }
-
-    public String getAccountStatus() {
-        return accountStatus;
-    }
-
-    public void setAccountStatus(String accountStatus) {
-        this.accountStatus = accountStatus;
-    }
-
-    public String getPageStyle() {
-        return pageStyle;
-    }
-
-    public void setPageStyle(String pageStyle) {
-        this.pageStyle = pageStyle;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     @Override
     public String toString() {
         return "UserInfo{" +
                 "id='" + id + '\'' +
                 ", userName='" + userName + '\'' +
-                ", account='" + account + '\'' +
+                // ", account='" + account + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", phone='" + phone + '\'' +

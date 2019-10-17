@@ -39,14 +39,14 @@ public class Filter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-        String account = request.getHeader("authorization");
-        if (StringUtils.isBlank(account)) {
+        String email = request.getHeader("authorization");
+        if (StringUtils.isBlank(email)) {
             log.info("No Login.....Plesse go to Login.....");
             response.setStatus(403);
             return;
         }
 
-        log.info("account save ok -->" + account);
+        log.info("email save ok -->" + email);
         filterChain.doFilter(request, response);
     }
 }

@@ -20,8 +20,8 @@ public class UserInfoRequest {
     /**
      * 登录账号
      */
-    @ApiModelProperty("登录账号")
-    private String account;
+//    @ApiModelProperty("登录账号")
+//    private String account;
     /**
      * 用户昵称
      */

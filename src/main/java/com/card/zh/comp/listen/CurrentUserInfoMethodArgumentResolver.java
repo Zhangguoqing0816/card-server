@@ -34,8 +34,8 @@ public class CurrentUserInfoMethodArgumentResolver implements HandlerMethodArgum
     @Nullable
     @Override
     public Object resolveArgument(MethodParameter methodParameter, @Nullable ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, @Nullable WebDataBinderFactory webDataBinderFactory) throws Exception {
-        String account = nativeWebRequest.getHeader("Authorization");
-        SessionModel sessionModel = loginService.getSessionModel(account);
+        String email = nativeWebRequest.getHeader("Authorization");
+        SessionModel sessionModel = loginService.getSessionModel(email);
         return sessionModel;
     }
 }

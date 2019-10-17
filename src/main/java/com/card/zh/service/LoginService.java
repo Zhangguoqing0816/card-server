@@ -76,7 +76,8 @@ public class LoginService {
      */
     public String loginCheckInfo(LoginRequest request) {
         Map<String, Object> map = new HashMap<>();
-        map.put("account", request.getAccount());
+        //map.put("account", request.getAccount());
+        map.put("email", request.getEmail());
         List<UserInfo> userInfos = userInfoService.selectByMap(map);
         String result = "ok";
         if (userInfos.isEmpty()) {
@@ -86,7 +87,8 @@ public class LoginService {
         } else if (!((String) session.getAttribute("validateCode")).equals(request.getAuthCode())) {
             result = "登陆失败，验证码错误";
         } else {
-            result += userInfos.get(0).getAccount();
+            //result += userInfos.get(0).getAccount();
+            result += userInfos.get(0).getEmail();
         }
         return result;
     }
@@ -94,13 +96,13 @@ public class LoginService {
     /**
      * 根据登陆账号查询信息
      *
-     * @param account
+     * @param email
      * @return
      */
-    public SessionModel getSessionModel(String account) {
+    public SessionModel getSessionModel(String email) {
         SessionModel sessionModel = new SessionModel();
         Map<String, Object> map = new HashMap<>();
-        map.put("account", account);
+        map.put("email", email);
         List<UserInfo> userInfos = userInfoService.selectByMap(map);
         if (userInfos.isEmpty()) {
             return new SessionModel();
@@ -119,7 +121,8 @@ public class LoginService {
     public String updatePassword(LoginRequest request) {
         String result = "ok";
         Map<String, Object> map = new HashMap<>();
-        map.put("account", request.getAccount());
+//        map.put("account", request.getAccount());
+        map.put("email", request.getEmail());
         List<UserInfo> userInfos = userInfoService.selectByMap(map);
         if (userInfos.isEmpty()) {
             result = "没有查询到此人";
