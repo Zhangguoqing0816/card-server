@@ -40,14 +40,6 @@ public class AttachController extends BaseController {
     @Autowired
     private AttachService attachService;
 
-    @ApiOperation(value = "add", notes = "add")
-    @PostMapping("/add")
-    public void add() {
-        Attach attach = new Attach();
-        attach.setId(genSeqNo("file-", 5));
-        attachService.insert(attach);
-    }
-
     /**
      * 上传文件
      *
