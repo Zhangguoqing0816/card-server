@@ -27,7 +27,7 @@ public class UserInfoController extends BaseController {
     @Autowired
     private UserInfoService userInfoService;
 
-    @ApiOperation(value = "addUser", notes = "addUser")
+    @ApiOperation(value = "新增用户信息", notes = "新增用户信息")
     @PostMapping("/addUser")
     public ResultData add(@RequestBody UserInfoRequest request) {
         Map<String, Object> map = new HashMap<>();
@@ -47,7 +47,7 @@ public class UserInfoController extends BaseController {
         return ResultData.success("插入成功", userInfo.getId());
     }
 
-    @ApiOperation(value = "getUsers", notes = "getUsers")
+    @ApiOperation(value = "查询全部用户", notes = "查询全部用户")
     @GetMapping("/getUsers")
     public ResultData getUser() {
         List<UserInfo> users = userInfoService.getUsers();

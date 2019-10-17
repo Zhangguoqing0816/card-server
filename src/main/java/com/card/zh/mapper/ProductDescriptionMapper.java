@@ -2,6 +2,7 @@ package com.card.zh.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.card.zh.entity.ProductDescription;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.card.zh.entity.ProductDescription;
  * @author zhanggq
  * @since 2019-10-17
  */
+@Repository
 public interface ProductDescriptionMapper extends BaseMapper<ProductDescription> {
 
 }
