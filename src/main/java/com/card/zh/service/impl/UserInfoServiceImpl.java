@@ -49,5 +49,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         }
     }
 
+    @Override
+    public UserInfo selectByParams(UserInfo userInfo) {
+        return userInfoMapper.selectByParams(userInfo);
+    }
+
 
 }

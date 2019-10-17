@@ -54,4 +54,11 @@ public class UserInfoController extends BaseController {
         return ResultData.success("search成功", users);
     }
 
+    @ApiOperation(value = "根据用户的属性查询用户", notes = "根据用户的属性查询用户")
+    @GetMapping("/selectByParams")
+    public ResultData selectByParams(UserInfo userInfo) {
+        UserInfo user = userInfoService.selectByParams(userInfo);
+        return ResultData.success("search成功", user);
+    }
+
 }

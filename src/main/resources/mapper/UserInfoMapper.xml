@@ -44,4 +44,100 @@
         from user_info
     </select>
 
+    <select id="selectByParams" parameterType="com.card.zh.entity.UserInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="userName != null">
+                and user_name = #{userName,jdbcType=VARCHAR}
+            </if>
+            <if test="nickName != null">
+                and nick_name = #{nickName,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null">
+                and phone = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="email != null">
+                and email = #{email,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null">
+                and password = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="wechatNumber != null">
+                and wechat_number = #{wechatNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="wechatQrCode != null">
+                and wechat_qr_code = #{wechatQrCode,jdbcType=VARCHAR}
+            </if>
+            <if test="qqNumber != null">
+                and qq_number = #{qqNumber,jdbcType=VARCHAR}
+            </if>
+            <if test="qqQrCode != null">
+                and qq_qr_code = #{qqQrCode,jdbcType=VARCHAR}
+            </if>
+            <if test="headSculpture != null">
+                and head_sculpture = #{headSculpture,jdbcType=VARCHAR}
+            </if>
+            <if test="companyName != null">
+                and company_name = #{companyName,jdbcType=VARCHAR}
+            </if>
+            <if test="companyPhone != null">
+                and company_phone = #{companyPhone,jdbcType=VARCHAR}
+            </if>
+            <if test="companyFax != null">
+                and company_fax = #{companyFax,jdbcType=VARCHAR}
+            </if>
+            <if test="companyAddress != null">
+                and company_address = #{companyAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="companyJobName != null">
+                and company_job_name = #{companyJobName,jdbcType=VARCHAR}
+            </if>
+            <if test="companyInternetAddress != null">
+                and company_internet_address = #{companyInternetAddress,jdbcType=VARCHAR}
+            </if>
+            <if test="bgsound != null">
+                and bgsound = #{bgsound,jdbcType=VARCHAR}
+            </if>
+            <if test="content != null">
+                and content = #{content,jdbcType=VARCHAR}
+            </if>
+            <if test="companyBusiness != null">
+                and company_business = #{companyBusiness,jdbcType=VARCHAR}
+            </if>
+            <if test="companySupply != null">
+                and company_supply = #{companySupply,jdbcType=VARCHAR}
+            </if>
+            <if test="companyDemand != null">
+                and company_demand = #{companyDemand,jdbcType=VARCHAR}
+            </if>
+            <if test="companyMapPlace != null">
+                and company_map_place = #{companyMapPlace,jdbcType=VARCHAR}
+            </if>
+            <if test="bankName != null">
+                and bank_name = #{bankName,jdbcType=VARCHAR}
+            </if>
+            <if test="bankUserName != null">
+                and bank_user_name = #{bankUserName,jdbcType=VARCHAR}
+            </if>
+            <if test="bankAccount != null">
+                and bank_account = #{bankAccount,jdbcType=VARCHAR}
+            </if>
+            <if test="accountStatus != null">
+                and account_status = #{accountStatus,jdbcType=VARCHAR}
+            </if>
+            <if test="pageStyle != null">
+                and page_style = #{pageStyle,jdbcType=VARCHAR}
+            </if>
+        </where>
+
+    </select>
+
 </mapper>

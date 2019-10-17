@@ -11,4 +11,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
     public List<UserInfo> getUsers();
 
+    UserInfo selectByParams(UserInfo userInfo);
+
 }

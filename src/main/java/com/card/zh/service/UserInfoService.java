@@ -18,4 +18,6 @@ public interface UserInfoService extends IService<UserInfo> {
     public List<UserInfo> getUsers();
 
     public void addUser(UserInfo userInfo, List<String> attachIdList);
+
+    UserInfo selectByParams(UserInfo userInfo);
 }
