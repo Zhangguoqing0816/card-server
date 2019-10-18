@@ -1,5 +1,6 @@
 package com.card.zh.comp.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +20,13 @@ import java.io.IOException;
  * @Date: 2019/10/11 14:38
  */
 @Component
+@Slf4j
 @WebFilter(urlPatterns = {"/api/*"}, filterName = "filter")
 public class Filter extends OncePerRequestFilter {
 
-    private final Logger log = LoggerFactory.getLogger(Filter.class);
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             filterChain.doFilter(request, response);
@@ -33,6 +34,7 @@ public class Filter extends OncePerRequestFilter {
         }
         log.info(String.format("%s request to %s", request.getMethod(), request.getRemoteAddr() + request.getRequestURL().toString()));
         if (StringUtils.contains(request.getRequestURL().toString(), "/loginController/login")
+                || StringUtils.contains(request.getRequestURL().toString(), "/login")
                 || StringUtils.contains(request.getRequestURL().toString(), "/loginController/patchca")
                 || StringUtils.contains(request.getRequestURL().toString(), "swagger")
                 || StringUtils.contains(request.getRequestURL().toString(), "api-docs")) {
@@ -41,7 +43,7 @@ public class Filter extends OncePerRequestFilter {
         }
         String email = request.getHeader("authorization");
         if (StringUtils.isBlank(email)) {
-            log.info("No Login.....Plesse go to Login.....");
+            log.info("No Login.....Please go to Login.....");
             response.setStatus(403);
             return;
         }
@@ -50,3 +52,4 @@ public class Filter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 }
+
